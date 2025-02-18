@@ -9,6 +9,12 @@ export function Navigation() {
       <button className="bg-indigo-500 p-3 rounded-lg">
         <Link to="/tasks-create">Create Task</Link>
       </button>
+      <button className="bg-indigo-500 p-3 rounded-lg">
+        <Link to="">Log-in</Link>
+      </button>
+      <button className="bg-indigo-500 p-3 rounded-lg">
+        <Link to="/tasks-create">Log-out</Link>
+      </button>
     </div>
   );
 }
