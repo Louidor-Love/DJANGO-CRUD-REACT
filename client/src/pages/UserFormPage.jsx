@@ -47,7 +47,7 @@ export function UserformPage(){
           />
           {errors.password2 && <span>This field is required</span>}
           
-          <button className="bg-red-500 p-3 rounded-lg w-48 mt-3">Signup</button>
+          <button className="bg-indigo-500 p-3 rounded-lg block w-full mt-3">Signup</button>
         </form>
       </div>
     )
