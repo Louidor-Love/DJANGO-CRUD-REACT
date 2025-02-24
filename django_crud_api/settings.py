@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+
+import os
+
 
 
 
@@ -82,10 +86,24 @@ WSGI_APPLICATION = 'django_crud_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+load_dotenv('crud.env')
+
+name = os.getenv("NAME")
+user = os.getenv("USER")
+password = os.getenv("PASSWORD")
+host = os.getenv("HOST")
+port = os.getenv("PORT")
+
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db3.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': name,           # Usar la variable de entorno para el nombre de la base de datos
+        'USER': user,           # Usar la variable de entorno para el usuario
+        'PASSWORD': password,   # Usar la variable de entorno para la contraseña
+        'HOST': host,           # Usar la variable de entorno para el host
+        'PORT': port,      # Cambia el puerto si es necesario
     }
 }
 
