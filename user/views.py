@@ -1,14 +1,26 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, authentication,permissions
+from rest_framework.authtoken.views import ObtainAuthToken 
 
-from user.serializers import UserSerializer
+from user.serializers import UserSerializer,AuthTokenSerializer
 from .models import User
 
-# Create your views here.
 
+
+#crear usuario
 class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
 
-class ListUserView(generics.ListAPIView):
+#ver usuario y actualizarlo
+class RetreiveUpdateUserView(generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer
-    queryset = User.objects.all()
+    authentication_classes =[authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    # este metodo sirve para ver el usuario q hace el request
+    def get_object(self): 
+        return self.request.user
+
+#crear token   
+class CreatetokenView(ObtainAuthToken):    
+    serializer_class = AuthTokenSerializer
