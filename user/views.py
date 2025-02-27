@@ -3,7 +3,7 @@ from rest_framework import generics, authentication,permissions
 from rest_framework.authtoken.views import ObtainAuthToken 
 
 from user.serializers import UserSerializer,AuthTokenSerializer
-from .models import User
+from user.models import User
 
 
 
@@ -22,5 +22,5 @@ class RetreiveUpdateUserView(generics.RetrieveUpdateAPIView):
         return self.request.user
 
 #crear token   
-class CreatetokenView(ObtainAuthToken):    
+class CreateTokenView(ObtainAuthToken):    
     serializer_class = AuthTokenSerializer

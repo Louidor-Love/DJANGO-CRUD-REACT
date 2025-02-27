@@ -26,17 +26,18 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class AuthTokenSerializer(serializers.Serializer):
-    email = serializers.EmailField
+    email = serializers.EmailField()
     password = serializers.CharField(style={'input_type' : 'password'})   
 
     def validate(self, data):
-        email = data.get('eamil')
+        email = data.get('email')
         password = data.get ('password')
         user = authenticate(
             request=self.context.get('request'),
             username = email,
             password = password
         )
+        print(f"Usuario autenticado: {user}")
 
         if not user:
             raise serializers.ValidationError('No se pudo authenticar', code = 'authorization')

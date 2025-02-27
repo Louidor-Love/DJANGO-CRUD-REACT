@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
     "coreapi", 
     'tasks',
     'user'
