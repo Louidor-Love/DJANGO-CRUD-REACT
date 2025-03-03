@@ -10,11 +10,11 @@ class UserSerializer(serializers.ModelSerializer):
             "email": {"required": True},       # El email es obligatorio
         }
 
-    def create_user(self,validated_data):
-        return get_user_model.objects.create(**validated_data)   
+    def create(self,validated_data):
+        return get_user_model().objects.create_user(**validated_data)   
     
     
-    def update_user(self,validated_data,instance):
+    def update(self,validated_data,instance):
         password = validated_data.pop('password',None) # Extrae la contraseña si está en los datos validados
         user = super().update(instance, validated_data)  # Llama a la implementación original de 'update'
 
@@ -34,7 +34,7 @@ class AuthTokenSerializer(serializers.Serializer):
         password = data.get ('password')
         user = authenticate(
             request=self.context.get('request'),
-            username = email,
+            username =email,
             password = password
         )
         print(f"Usuario autenticado: {user}")
